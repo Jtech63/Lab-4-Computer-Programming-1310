@@ -1,0 +1,157 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+double compute_average(double, int);
+void high(double[], int);
+void low(double[], int);
+
+
+int main()
+{
+	// grade values
+	const int
+		A_score = 90,
+		B_score = 80,
+		C_score = 70,
+		D_score = 60,
+		F_score = 0;
+
+	int numberOfGrades;
+	double grades = 0.0;
+	double totalGrades = 0.0;
+	double averageGrades = 0.0;
+	double finalGrade = 0.0;
+	double amount = 0.0;
+	const int size = 25;
+	double grades_array[size];
+	int count = 0;
+
+
+	// Title and Author
+	cout << "Average Grades using Arrays\n";
+	cout << "Written by VOID\n\n";
+	cout << "This program can input 1 to " << size << " grades\n\n";
+	cout << "How many grades do you want to average? ";
+	cin >> numberOfGrades;
+
+
+	for (count = 0; count < numberOfGrades; count++) //loop counter
+	{
+		cout << "Enter Grade " << count + 1 << ": ";
+		cin >> grades_array[count];
+
+		totalGrades += grades_array[count];
+	}
+	averageGrades = compute_average(totalGrades, numberOfGrades);
+
+	for (count = 0; count < numberOfGrades; count++)
+	{
+		cout << "Grade " << count + 1 << ":" << grades_array[count] << endl;
+	}
+	cout << endl;
+	high(grades_array, numberOfGrades);
+	low(grades_array, numberOfGrades);
+	cout << endl;
+	cout << "Average Grade: " << setprecision(1) << fixed << averageGrades << endl << endl;
+
+	//Determine the letter grade based on the average
+	if (averageGrades >= A_score)
+	{
+		cout << "Your final grade is A.\n";
+	}
+
+	else
+	{
+		if (averageGrades >= B_score)
+		{
+			cout << "Your final grade is B.\n";
+		}
+		else
+		{
+
+			if (averageGrades >= C_score)
+			{
+				cout << "Your final grade is C.\n";
+			}
+			else
+			{
+				if (averageGrades >= D_score)
+				{
+					cout << "Your final grade is D.\n";
+				}
+				else
+				{
+					if (averageGrades >= F_score)
+					{
+						cout << "Your final grade is F.\n";
+					}
+
+					else
+					{
+						cout << "Invalid test score.\n";
+					}
+
+				}
+			}
+		}
+
+
+		//pause screen
+		//exit command);
+
+		//to pause the screen
+		cout << "\nPress Enter key to exit...";
+		cin.ignore();
+		cin.get();
+
+		return 0;
+	}
+}
+
+
+
+	double compute_average(double total, int number)
+	{
+		return (total / number);
+	}
+	// compute and return average
+	// avg (total / number);
+	// double avg;
+
+	void high(double grades[], int finalGrade) //calculate highest
+	{
+		int count;
+		double highest;
+
+		highest = grades[0];
+
+		for (count = 1; count < finalGrade; count++)
+		{
+			if (grades[count] > highest)
+			{
+				highest = grades[count];
+			}
+
+		}
+		cout << "Highest Grade: " << highest << endl;
+	}
+	void low(double grades[], int finalGrade) //calculate lowest 
+	{
+		int count;
+		double lowest;
+
+		lowest = grades[0];
+
+		for (count = 1; count < finalGrade; count++)
+		{
+			if (grades[count] < lowest)
+			{
+				lowest = grades[count];
+			}
+
+		}
+		cout << "Lowest Grade:  " << lowest << endl;
+	}
